@@ -2,7 +2,7 @@ import tkinter as tk
 import random
 
 
-# Function to swap two bars that will be animated
+
 def swap(pos_0, pos_1):
     bar11, _, bar12, _ = canvas.coords(pos_0)
     bar21, _, bar22, _ = canvas.coords(pos_1)
@@ -48,7 +48,7 @@ def _bubble_sort():
                 swap(barList[j + 1], barList[j])
                 yield
 
-            # Selection Sort
+           
 
 
 def _selection_sort():
@@ -66,7 +66,7 @@ def _selection_sort():
         yield
 
 
-# Triggering Fuctions
+
 
 def insertion_sort():
     global worker
@@ -86,7 +86,6 @@ def bubble_sort():
     animate()
 
 
-# Animation Function
 def animate():
     global worker
     if worker is not None:
@@ -98,7 +97,6 @@ def animate():
         finally:
             window.after_cancel(animate)
 
-        # Generator function for generating data
 
 
 def generate():
@@ -110,7 +108,6 @@ def generate():
     barList = []
     lengthList = []
 
-    # Creating a rectangle
     for bar in range(1, 60):
         randomY = random.randint(1, 360)
         bar = canvas.create_rectangle(barstart, randomY, barend, 365, fill='yellow')
@@ -118,14 +115,13 @@ def generate():
         barstart += 10
         barend += 10
 
-    # Getting length of the bar and appending into length list
+
     for bar in barList:
         bar = canvas.coords(bar)
         length = bar[3] - bar[1]
         lengthList.append(length)
 
-    # Maximum is colored Red
-    # Minimum is colored Black
+   
     for i in range(len(lengthList) - 1):
         if lengthList[i] == min(lengthList):
             canvas.itemconfig(barList[i], fill='red')
@@ -133,16 +129,13 @@ def generate():
             canvas.itemconfig(barList[i], fill='black')
 
 
-# Making a window using the Tk widget
 window = tk.Tk()
 window.title('Sorting Visualizer')
 window.geometry('600x450')
 
-# Making a Canvas within the window to display contents
 canvas = tk.Canvas(window, width='600', height='400')
 canvas.grid(column=0, row=0, columnspan=50)
 
-# Buttons
 insert = tk.Button(window, text='Insertion Sort', command=insertion_sort)
 select = tk.Button(window, text='Selection Sort', command=selection_sort)
 bubble = tk.Button(window, text='Bubble Sort', command=bubble_sort)
